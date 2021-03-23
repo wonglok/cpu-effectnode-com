@@ -1,0 +1,13 @@
+DATABASE_URL=mongodb+srv://....
+GITHUB_ID=______________________
+GITHUB_SECRET=______________________
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_ID=______________________
+GOOGLE_SECRET=______________________
+JWT_SECRET=______________________
+ADMIN_UID=______________________
+ADMIN_UID_1=______________________
+ADMIN_UID_2=______________________
+ADMIN_UID_3=______________________
+ADMIN_UID_4=______________________
+ADMIN_UID_5=______________________
