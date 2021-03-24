@@ -1,4 +1,4 @@
-let ModelName = require("../name");
+let ModelName = require("../index").ModelName;
 export default (req, res) => {
   if (req.method.toUpperCase() !== "POST") {
     res.status(404).json({
