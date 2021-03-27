@@ -33,7 +33,7 @@ export const getID = (v) => {
 
 export const checkAdmin = async ({}) => {
   let session = await getSession();
-  return session;
+  return session?.user?.isAdmin;
 };
 
 export const getModel = async (name) => {

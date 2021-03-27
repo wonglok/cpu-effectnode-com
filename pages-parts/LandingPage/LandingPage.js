@@ -450,12 +450,12 @@ export function CallToAction() {
       <>
         <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
           <div className="rounded-md shadow">
-            <a
+            <span
               href="#"
-              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 md:py-4 md:text-lg md:px-10"
             >
               Loading...
-            </a>
+            </span>
           </div>
         </div>
       </>
@@ -468,21 +468,23 @@ export function CallToAction() {
         <>
           <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
             <div className="rounded-md shadow">
-              <a
-                href="#"
-                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 md:py-4 md:text-lg md:px-10"
+              <span
+                onClick={() => {
+                  signIn();
+                }}
+                className="w-full cursor-pointer flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 md:py-4 md:text-lg md:px-10"
               >
                 Get started
-              </a>
+              </span>
             </div>
-            <div className="mt-3 sm:mt-0 sm:ml-3">
+            {/* <div className="mt-3 sm:mt-0 sm:ml-3">
               <a
                 href="#"
                 className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 md:py-4 md:text-lg md:px-10"
               >
                 Live demo
               </a>
-            </div>
+            </div> */}
           </div>
         </>
       )}

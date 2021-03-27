@@ -5,7 +5,7 @@ import * as Operations from "../../../../util/Operations";
 export const ModelName = "projects";
 
 export default async (req, res) => {
-  if (req.method.toUpperCase() !== "GET") {
+  if (req.method.toUpperCase() !== "POST") {
     res.status(404).json({
       err: "bad method",
     });
@@ -14,12 +14,17 @@ export default async (req, res) => {
 
   await Operations.run(
     async () => {
+      if (!req.body.userID) {
+        throw new Error("missing userID");
+      }
+
       let data = await Operations.query({
         //
         name: ModelName,
-        perPage: req.query.perPage,
-        pageAt: req.query.pageAt,
+        perPage: req.body.perPage,
+        pageAt: req.body.pageAt,
         query: {
+          userID: req.body.userID,
           published: true,
         },
       });

@@ -1,4 +1,8 @@
-export const create = async ({ userID, displayName, ...data }) => {
+export const create = async ({
+  userID,
+  displayName = "Empty Project",
+  ...data
+}) => {
   if (!userID) {
     throw new Error("cannot create without userID");
   }
@@ -16,6 +20,27 @@ export const create = async ({ userID, displayName, ...data }) => {
       userID,
       displayName,
       ...data,
+    }),
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  }).then((e) => e.json());
+
+  return res;
+};
+
+export const list = async ({ userID, pageAt, perPage }) => {
+  let res = fetch("/api/app/projects/list", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userID,
+      pageAt,
+      perPage,
     }),
     mode: "cors",
     cache: "no-cache",

@@ -1,4 +1,4 @@
-import { ModelName } from "./index";
+import { ModelName } from "./list";
 import { getToken } from "next-auth/jwt";
 import * as Operations from "../../../../util/Operations";
 
