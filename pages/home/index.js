@@ -3,7 +3,7 @@ import { StackedLayout } from "../../pages-parts/Layouts/StackedLayout";
 
 export default function HomeProfile() {
   return (
-    <StackedLayout>
+    <StackedLayout title="My Projects">
       <AppProjects></AppProjects>
     </StackedLayout>
   );
