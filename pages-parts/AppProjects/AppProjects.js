@@ -296,7 +296,7 @@ export function ListProjects() {
         >
           Next →
         </button>
-        <span className="mr-3 inline-block">Page at: {pageAt.value}</span>
+        <span className="mr-3 inline-block">Page: {pageAt.value}</span>
       </div>
 
       {/*
@@ -354,7 +354,7 @@ export function ListProjects() {
         >
           Next →
         </button>
-        <span className="mr-3 inline-block">Page at: {pageAt.value}</span>
+        <span className="mr-3 inline-block">Page: {pageAt.value}</span>
       </div>
     </div>
   );
