@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/client";
-import * as Projects from "../util/apis/Projects";
+import * as Projects from "../util/apis/ProjectsAPI";
 
 export const MyProjects = ({ session }) => {
   let onCreateProject = () => {

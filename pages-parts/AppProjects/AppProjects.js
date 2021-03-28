@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { createState, useState } from "@hookstate/core";
-import { session, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import { useEffect } from "react";
 import * as ProjectsAPI from "../../util/apis/ProjectsAPI";
 
