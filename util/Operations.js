@@ -49,7 +49,7 @@ export const run = async (onRun = () => {}, onErr = () => {}) => {
   try {
     await onRun();
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     await onErr(e);
   }
 };
@@ -84,8 +84,8 @@ export const deleteManyAdmin = async ({ name, query }) => {
   return result;
 };
 
-export const updateOne = async ({ name, _id, upates }) => {
+export const updateOne = async ({ name, _id, updates }) => {
   let Model = await getModel(name);
-  let result = await Model.updateOne({ _id }, upates);
+  let result = await Model.updateOne({ _id }, updates);
   return result;
 };

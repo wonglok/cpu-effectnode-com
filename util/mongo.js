@@ -38,6 +38,7 @@ register("projects", {
   displayName: {
     type: String,
     default: "My New Project",
+    index: true,
   },
 
   //

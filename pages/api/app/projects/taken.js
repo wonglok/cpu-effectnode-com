@@ -17,7 +17,6 @@ export default async (req, res) => {
     }
 
     let data = req.body;
-    let projectID = Operations.getID();
     let slug = Operations.getSlug(data.displayName);
     let takenRes = await Operations.query({
       name: ModelName,
@@ -29,22 +28,10 @@ export default async (req, res) => {
     });
 
     if (takenRes.length >= 1) {
-      data.displayName += `-${Operations.getID()}`;
-      // throw new Error("name already taken");
+      throw new Error("name already taken");
+    } else {
+      res.json({ ok: true });
     }
-
-    let userID = Operations.getID(token.uid);
-    let made = await Operations.create({
-      name: ModelName,
-      data: {
-        _id: projectID,
-        userID,
-        displayName: data.displayName,
-        slug,
-      },
-    });
-
-    res.json(made);
   }, Operations.getErrorHandler({ res }));
 };
 

@@ -1,5 +1,4 @@
 // import { Models } from "../../../../util/mongo";
-import { getSession } from "next-auth/client";
 import * as Operations from "../../../../util/Operations";
 
 export const ModelName = "projects";
@@ -17,16 +16,29 @@ export default async (req, res) => {
       if (!req.body.userID) {
         throw new Error("missing userID");
       }
+      let query = {
+        userID: req.body.userID,
+        published: req.body.published,
+        displayName: { $regex: req.body.search || "" },
+      };
+
+      if (typeof query.published === "undefined") {
+        delete query.published;
+      }
+      if (typeof req.body.search === "undefined" || !req.body.search) {
+        delete req.body.displayName;
+      }
+      if (typeof query.userID === "undefined") {
+        delete query.userID;
+        query.published = true;
+      }
 
       let data = await Operations.query({
         //
         name: ModelName,
         perPage: req.body.perPage,
         pageAt: req.body.pageAt,
-        query: {
-          userID: req.body.userID,
-          published: true,
-        },
+        query,
       });
 
       res.status(200).json(data);
