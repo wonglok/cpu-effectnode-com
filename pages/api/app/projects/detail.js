@@ -17,20 +17,15 @@ export default async (req, res) => {
     }
 
     let data = req.body;
-    let slug = Operations.getSlug(data.displayName);
-    let takenRes = await Operations.query({
+    let itemQuery = await Operations.findOne({
       name: ModelName,
-      perPage: 25,
-      pageAt: 0,
-      query: {
-        slug,
-      },
+      _id: Operations.getID(data._id),
     });
 
-    if (takenRes.length >= 1) {
-      throw new Error("name already taken");
+    if (itemQuery) {
+      res.json(itemQuery);
     } else {
-      res.json({ ok: true });
+      res.status(404).json({ isError: true, msg: "not found" });
     }
   }, Operations.getErrorHandler({ res }));
 };

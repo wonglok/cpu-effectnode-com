@@ -13,12 +13,16 @@
     "mongoose": "^5.12.1",
     "next": "10.0.5",
     "next-auth": "^3.13.1",
+    "next-compose-plugins": "^2.2.1",
+    "next-transpile-modules": "^6.4.0",
+    "ogl": "^0.0.68",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.15.5",
     "slugify": "^1.5.0",
     "swr": "^0.5.4",
-    "tailwindcss": "^2.0.4"
+    "tailwindcss": "^2.0.4",
+    "three": "^0.127.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",

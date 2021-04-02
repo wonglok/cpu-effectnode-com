@@ -1,0 +1,27 @@
+.sidebar {
+  width: 245px;
+}
+
+.main {
+  width: calc(100% - 245px);
+}
+
+.header {
+  height: 55px;
+}
+
+.bodyWithHeaderFooter {
+  height: calc(100% - 55px - 55px);
+}
+
+.footer {
+  height: 55px;
+}
+
+.tabs {
+  height: 55px;
+}
+
+.bodyWithTabs {
+  height: calc(100% - 55px);
+}

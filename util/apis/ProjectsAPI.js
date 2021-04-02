@@ -6,7 +6,7 @@ export const checkError = (json) => {
   }
 };
 
-export const makeJSON = (e) => {
+export const parseToJSON = (e) => {
   try {
     return e.json();
   } catch (e) {
@@ -43,7 +43,7 @@ export const create = async ({
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
   })
-    .then(makeJSON)
+    .then(parseToJSON)
     .then(checkError);
 
   return res;
@@ -74,7 +74,7 @@ export const list = async ({
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
   })
-    .then(makeJSON)
+    .then(parseToJSON)
     .then(checkError);
 
   return res;
@@ -96,7 +96,7 @@ export const remove = async ({ _id, userID }) => {
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
   })
-    .then(makeJSON)
+    .then(parseToJSON)
     .then(checkError);
 
   return res;
@@ -119,7 +119,29 @@ export const update = async ({ _id, updates, userID }) => {
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
   })
-    .then(makeJSON)
+    .then(parseToJSON)
+    .then(checkError);
+
+  return res;
+};
+
+export const detail = async ({ _id }) => {
+  let res = fetch("/api/app/projects/detail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      _id,
+    }),
+
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  })
+    .then(parseToJSON)
     .then(checkError);
 
   return res;

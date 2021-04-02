@@ -63,6 +63,12 @@ export const query = async ({ name, query, perPage = 25, pageAt = 0 }) => {
   return all;
 };
 
+export const findOne = async ({ name, _id }) => {
+  let Model = await getModel(name);
+  let all = await Model.findOne({ _id }).sort("-created_at");
+  return all;
+};
+
 export const create = async ({ name, data }) => {
   let Model = await getModel(name);
   let created = new Model(data);
