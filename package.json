@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@hookstate/core": "^3.0.6",
+    "@react-three/fiber": "^6.0.6",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.1",
     "next": "10.0.5",

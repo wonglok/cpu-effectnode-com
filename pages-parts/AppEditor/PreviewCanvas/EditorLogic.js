@@ -1,3 +1,5 @@
+import { BoxBufferGeometry, Mesh, MeshNormalMaterial } from "three";
+
 export class EditorLogic {
   constructor(mini) {
     this.mini = mini;
@@ -10,9 +12,12 @@ export class EditorLogic {
     let scene = await ready.scene;
     let camera = await ready.camera;
 
-    let box = await ready.box;
+    let box = new Mesh(
+      new BoxBufferGeometry(1, 1, 1),
+      new MeshNormalMaterial()
+    );
 
-    scene.add(box.mesh);
+    scene.add(box);
 
     camera.position.z = 15;
     renderer.autoClear = false;

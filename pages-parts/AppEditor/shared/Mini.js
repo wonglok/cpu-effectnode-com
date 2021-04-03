@@ -16,12 +16,14 @@ export class Mini {
     this.set = (k, v) => {
       this.resource.set(k, v);
     };
+
     this.name = name;
     this.domElement = domElement;
     this.getRect = () => {
       return domElement.getBoundingClientRect();
     };
-    let isAborted = false;
+
+    this.isAborted = false;
     this.tasks = [];
     this.resizeTasks = [];
     this.cleanTasks = [];
@@ -66,7 +68,7 @@ export class Mini {
     };
 
     this.clean = () => {
-      isAborted = true;
+      this.isAborted = true;
       try {
         this.cleanTasks.forEach((e) => e());
       } catch (e) {
@@ -75,7 +77,7 @@ export class Mini {
     };
 
     this.work = () => {
-      if (isAborted) {
+      if (this.isAborted) {
         return {
           name: this.name,
           duration: 0,
@@ -111,5 +113,69 @@ export class Mini {
         },
       }
     );
+  }
+}
+
+export class SubMini {
+  constructor(mini) {
+    this.mini = mini;
+    this.reseizers = [];
+    this.tasks = [];
+    this.cleanups = [];
+    this.active = true;
+
+    this.mini.onResize(() => {
+      if (this.active) {
+        this.reseizers.forEach((r) => {
+          try {
+            r();
+          } catch (e) {
+            console.log(e);
+          }
+        });
+      }
+    });
+
+    this.mini.onLoop(() => {
+      if (this.active) {
+        this.tasks.forEach((t) => {
+          try {
+            t();
+          } catch (e) {
+            console.log(e);
+          }
+        });
+      }
+    });
+
+    this.destroy = () => {
+      this.active = false;
+      this.cleanups.forEach((c) => {
+        try {
+          c();
+        } catch (e) {
+          console.log(e);
+        }
+      });
+    };
+
+    // apis
+
+    this.ready = this.mini.ready;
+    this.event = this.mini.event;
+    this.set = this.mini.set;
+    this.get = this.mini.get;
+    this.resource = this.mini.resource;
+    this.getRect = this.mini.getRect;
+    this.onClean = (v) => {
+      this.cleanups.push(v);
+    };
+    this.onLoop = (v) => {
+      this.tasks.push(v);
+    };
+    this.onResize = (v) => {
+      this.reseizers.push(v);
+    };
+    this.domElement = mini.domElement;
   }
 }
